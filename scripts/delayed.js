@@ -5,3 +5,10 @@ import { sampleRUM } from './lib-franklin.js';
 sampleRUM('cwv');
 
 // add more delayed functionality here
+
+// open external links in a new window
+document.querySelectorAll('a').forEach((a) => {
+    if (a.href.startsWith("http")) {
+      a.target = "_blank";
+    }
+  });
