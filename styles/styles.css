@@ -12,15 +12,15 @@
 
  :root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: #fff;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
-  --text-color: #000;
+  --link-color: #622a0f;
+  --link-hover-color: #622a0f;
+  --background-color: rgb(240,240,220);
+  --overlay-background-color: rgb(230,230,210);
+  --highlight-background-color: rgb(220,220,200);
+  --text-color: #492000;
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
+  --body-font-family: 'Palatino', 'Times', 'Times New Roman', serif;
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
@@ -143,6 +143,11 @@ a.button.secondary, button.secondary {
   color: var(--text-color)
 } 
 
+main {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 main input {
   font-size: 1.25rem;
