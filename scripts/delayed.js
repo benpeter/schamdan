@@ -8,7 +8,7 @@ sampleRUM('cwv');
 
 // open external links in a new window
 document.querySelectorAll('a').forEach((a) => {
-    if (a.href.startsWith("http")) {
-      a.target = "_blank";
-    }
-  });
+  if (a.href.startsWith('http')) {
+    a.target = '_blank';
+  }
+});
