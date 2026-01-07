@@ -14,9 +14,9 @@
   /* colors */
   --link-color: #622a0f;
   --link-hover-color: #622a0f;
-  --background-color: rgb(240,240,220);
-  --overlay-background-color: rgb(230,230,210);
-  --highlight-background-color: rgb(220,220,200);
+  --background-color: rgb(240 240 220);
+  --overlay-background-color: rgb(230 230 210);
+  --highlight-background-color: rgb(220 220 200);
   --text-color: #492000;
 
   /* fonts */

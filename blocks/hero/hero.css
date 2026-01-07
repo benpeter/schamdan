@@ -20,7 +20,7 @@ main .hero h1 {
     margin-left: auto;
     margin-right: auto;
     color: var(--text-color);
-    background: rgba(204, 204, 204, 0.3);
+    background: rgb(204 204 204 / 30%);
 }
 
 
