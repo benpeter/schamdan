@@ -25,3 +25,8 @@ div.speisen > div > div:nth-child(3) {
     font-style: italic;
     text-align: left;
 }
+
+/* reset p margins added by aem.js wrapTextNodes */
+div.speisen p {
+    margin: 0;
+}
