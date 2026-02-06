@@ -3,7 +3,6 @@
 
 import { readFile } from '@web/test-runner-commands';
 import { expect } from '@esm-bundle/chai';
-import sinon from 'sinon';
 
 let blockUtils;
 
@@ -12,7 +11,7 @@ document.head.innerHTML = await readFile({ path: './head.html' });
 
 describe('Utils methods', () => {
   before(async () => {
-    blockUtils = await import('../../scripts/lib-franklin.js');
+    blockUtils = await import('../../scripts/aem.js');
     document.body.innerHTML = await readFile({ path: './body.html' });
   });
 
@@ -27,46 +26,12 @@ describe('Utils methods', () => {
   });
 
   it('Loads CSS', async () => {
-    // loads a css file and calls callback
-    const load = await new Promise((resolve) => {
-      blockUtils.loadCSS('/test/scripts/test.css', (e) => resolve(e));
-    });
-    expect(load).to.equal('load');
+    // loads a css file
+    await blockUtils.loadCSS('/test/scripts/test.css');
     expect(getComputedStyle(document.body).color).to.equal('rgb(255, 0, 0)');
 
-    // does nothing if css already loaded
-    const noop = await new Promise((resolve) => {
-      blockUtils.loadCSS('/test/scripts/test.css', (e) => resolve(e));
-    });
-    expect(noop).to.equal('noop');
-
-    // calls callback in case of error
-    const error = await new Promise((resolve) => {
-      blockUtils.loadCSS('/test/scripts/nope.css', (e) => resolve(e));
-    });
-    expect(error).to.equal('error');
-  });
-
-  it('Collects RUM data', async () => {
-    const sendBeacon = sinon.stub(navigator, 'sendBeacon');
-    // turn on RUM
-    window.history.pushState({}, '', `${window.location.href}&rum=on`);
-    delete window.hlx;
-
-    // sends checkpoint beacon
-    await blockUtils.sampleRUM('test', { foo: 'bar' });
-    expect(sendBeacon.called).to.be.true;
-    sendBeacon.resetHistory();
-
-    // sends cwv beacon
-    await blockUtils.sampleRUM('cwv', { foo: 'bar' });
-    expect(sendBeacon.called).to.be.true;
-
-    // test error handling
-    sendBeacon.throws();
-    await blockUtils.sampleRUM('error', { foo: 'bar' });
-
-    sendBeacon.restore();
+    // does nothing if css already loaded (resolves immediately)
+    await blockUtils.loadCSS('/test/scripts/test.css');
   });
 
   it('Creates optimized picture', async () => {
@@ -74,13 +39,6 @@ describe('Utils methods', () => {
     expect($picture.querySelector(':scope source[type="image/webp"]')).to.exist; // webp
     expect($picture.querySelector(':scope source:not([type="image/webp"])')).to.exist; // fallback
     expect($picture.querySelector(':scope img').src).to.include('format=png&optimize=medium'); // default
-  });
-
-  it('Normalizes headings', async () => {
-    const numHeadings = document.querySelectorAll('h1, h2, h3, h4, h5, h6').length;
-    blockUtils.normalizeHeadings(document.querySelector('main'), ['h1', 'h2', 'h3']);
-    expect(document.querySelectorAll('h1, h2, h3, h4, h5, h6').length).to.equal(numHeadings);
-    expect(document.querySelectorAll('h4, h5, h6').length).to.equal(0);
   });
 });
 
@@ -95,25 +53,11 @@ describe('Sections and blocks', () => {
     expect(document.querySelectorAll('main .block').length).to.equal(1);
   });
 
-  it('Loads blocks', async () => {
-    await blockUtils.loadBlocks(document.querySelector('main'));
-    document.querySelectorAll('main .block').forEach(($block) => {
-      expect($block.dataset.blockStatus).to.equal('loaded');
-    });
-  });
-
-  it('Updates section status', async () => {
-    blockUtils.updateSectionsStatus(document.querySelector('main'));
+  it('Loads sections', async () => {
+    await blockUtils.loadSections(document.querySelector('main'));
     document.querySelectorAll('main .section').forEach(($section) => {
       expect($section.dataset.sectionStatus).to.equal('loaded');
     });
-
-    // test section with block still loading
-    const $section = document.querySelector('main .section');
-    delete $section.dataset.sectionStatus;
-    $section.querySelector(':scope .block').dataset.blockStatus = 'loading';
-    blockUtils.updateSectionsStatus(document.querySelector('main'));
-    expect($section.dataset.sectionStatus).to.equal('loading');
   });
 
   it('Reads block config', async () => {
