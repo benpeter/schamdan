@@ -1,5 +1,9 @@
 /* header and nav layout */
 
+body.nav-open {
+  overflow-y: hidden;
+}
+
 header .header {
   max-width: 900px;
   margin-left: auto;
@@ -262,6 +266,6 @@ header nav[aria-expanded='true'] .nav-tools li {
     width: 300px;
     left: 0;
     padding: 16px;
-    box-shadow: 0 0 5px var(text-color);
+    box-shadow: 0 0 5px var(--text-color);
   }
 }

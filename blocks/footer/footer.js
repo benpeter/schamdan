@@ -11,9 +11,11 @@ export default async function decorate(block) {
 
   const footerPath = cfg.footer || '/footer';
   const resp = await fetch(`${footerPath}.plain.html`);
-  const html = await resp.text();
-  const footer = document.createElement('div');
-  footer.innerHTML = html;
-  await decorateIcons(footer);
-  block.append(footer);
+  if (resp.ok) {
+    const html = await resp.text();
+    const footer = document.createElement('div');
+    footer.innerHTML = html;
+    await decorateIcons(footer);
+    block.append(footer);
+  }
 }

@@ -55,12 +55,11 @@ export default async function decorate(block) {
     hamburger.innerHTML = '<div class="nav-hamburger-icon"></div>';
     hamburger.addEventListener('click', () => {
       const expanded = nav.getAttribute('aria-expanded') === 'true';
-      document.body.style.overflowY = expanded ? '' : 'hidden';
+      document.body.classList.toggle('nav-open', !expanded);
       nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
     });
     nav.prepend(hamburger);
     nav.setAttribute('aria-expanded', 'false');
-    decorateIcons(nav);
     block.append(nav);
   }
 }
