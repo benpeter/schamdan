@@ -3,7 +3,7 @@ div.speisen > div {
     grid-template:
       "nr name p2 p1"
       "nr description p2 p1" / 2em auto auto 4em;
-    gap: 0 0;
+    gap: 0;
     grid-auto-flow: row;
     margin-bottom: 8px;
 }
@@ -24,4 +24,9 @@ div.speisen > div > div:nth-child(3) {
     font-size: smaller;
     font-style: italic;
     text-align: left;
+}
+
+/* reset p margins added by aem.js wrapTextNodes */
+div.speisen p {
+    margin: 0;
 }

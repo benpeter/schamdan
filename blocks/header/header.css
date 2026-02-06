@@ -163,7 +163,7 @@ header nav[aria-expanded='true'] .nav-tools li {
 }
 
 /* desktop nav styles */
-@media (min-width: 1000px) {
+@media (width >= 1000px) {
   header nav {
     display: flex;
     justify-content: space-between;
@@ -178,7 +178,7 @@ header nav[aria-expanded='true'] .nav-tools li {
 
   header nav .nav-drop::after {
     content: ' ';
-    border: 1px solid currentolor;
+    border: 1px solid currentcolor;
     transform: rotate(135deg);
     border-width: 2px 2px 0 0;
     display: inline-block;

@@ -3,16 +3,16 @@
 <!-- upskill:skills:start -->
 ## Skills
 
-You have access to a set of skills in .claude/skills. Each skill consists of a SKILL.md file, and other files such as scripts and resources, which are referenced from there.
+You have access to a set of skills in .skills. Each skill consists of a SKILL.md file, and other files such as scripts and resources, which are referenced from there.
 
 **YOU ARE REQUIRED TO USE THESE SKILLS TO ACCOMPLISH DEVELOPMENT TASKS. FAILING TO DO SO WILL RESULT IN WASTED TIME AND CYCLES.**
 
 ### How Skills Work
 
-Each skill is a directory in `.claude/skills/` with the following structure:
+Each skill is a directory in `.skills/` with the following structure:
 
 ```
-.claude/skills/
+.skills/
   └── {skill-name}/
       ├── SKILL.md        # Main instructions (required)
       ├── scripts/        # Optional supporting scripts
@@ -42,7 +42,7 @@ Always use the following process:
 
 ### Available Skills
 
-Skills will be added to `.claude/skills/` as needed for this project. Check the `.claude/skills/` directory or run `./.agents/discover-skills` for the current list of available skills.
+Skills will be added to `.skills/` as needed for this project. Check the `.skills/` directory or run `./.agents/discover-skills` for the current list of available skills.
 
 **For ALL development work involving blocks, core scripts, or functionality, you MUST start with the content-driven-development skill.** It will orchestrate other skills as needed throughout the development workflow.
 <!-- upskill:skills:end -->
