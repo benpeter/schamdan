@@ -14,5 +14,6 @@ function isLocal(a) {
 document.querySelectorAll('a').forEach((a) => {
   if (!isLocal(a)) {
     a.target = '_blank';
+    a.rel = 'noopener noreferrer';
   }
 });

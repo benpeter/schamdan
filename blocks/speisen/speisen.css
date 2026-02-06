@@ -1,4 +1,4 @@
-div.speisen > div {      
+.speisen > div {      
     display: grid;
     grid-template:
       "nr name p2 p1"
@@ -8,18 +8,18 @@ div.speisen > div {
     margin-bottom: 8px;
 }
 
-div.speisen > div > div:nth-child(4) {
+.speisen > div > div:nth-child(4) {
     text-align: right;
     grid-area: p2;
 }
 
-div.speisen > div > div:nth-child(5) {
+.speisen > div > div:nth-child(5) {
     text-align: right;
     padding-left: 8px;
     grid-area: p1;
 }
 
-div.speisen > div > div:nth-child(3) {
+.speisen > div > div:nth-child(3) {
     grid-area: description;
     font-size: smaller;
     font-style: italic;
@@ -27,6 +27,6 @@ div.speisen > div > div:nth-child(3) {
 }
 
 /* reset p margins added by aem.js wrapTextNodes */
-div.speisen p {
+.speisen p {
     margin: 0;
 }
